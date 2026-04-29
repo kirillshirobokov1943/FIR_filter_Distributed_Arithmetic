@@ -5,116 +5,48 @@ module tb#(
 	)
 ();
 
-logic signed [16-1:0] x [0:99];
+logic signed [16-1:0] x [-15:300];
 logic signed [15:0] h [0:15];
-logic signed [15 : 0] y [0:100];
+logic signed [15 : 0] y [0:300];
 int c;
-//инициализация массива входных отсчетов (синус с частотой в полосе пропускания)
-initial begin
-	
-	x[0] = 16'h0000;
-	x[1] = 16'h100B;
-	x[2] = 16'h1FD5;
-	x[3] = 16'h2F1F;
-	x[4] = 16'h3DAA;
-	x[5] = 16'h4B3D;
-	x[6] = 16'h579F;
-	x[7] = 16'h62A0;
-	x[8] = 16'h6C13;
-	x[9] = 16'h73D1;
-	x[10] = 16'h79BC;
-	x[11] = 16'h7DBC;
-	x[12] = 16'h7FBF;
-	x[13] = 16'h7FBF;
-	x[14] = 16'h7DBC;
-	x[15] = 16'h79BC;
-	x[16] = 16'h73D1;
-	x[17] = 16'h6C13;
-	x[18] = 16'h62A0;
-	x[19] = 16'h579F;
-	x[20] = 16'h4B3D;
-	x[21] = 16'h3DAA;
-	x[22] = 16'h2F1F;
-	x[23] = 16'h1FD5;
-	x[24] = 16'h100B;
-	x[25] = 16'h0000;
-	x[26] = 16'hEFF5;
-	x[27] = 16'hE02B;
-	x[28] = 16'hD0E1;
-	x[29] = 16'hC256;
-	x[30] = 16'hB4C3;
-	x[31] = 16'hA861;
-	x[32] = 16'h9D60;
-	x[33] = 16'h93ED;
-	x[34] = 16'h8C2F;
-	x[35] = 16'h8644;
-	x[36] = 16'h8244;
-	x[37] = 16'h8041;
-	x[38] = 16'h8041;
-	x[39] = 16'h8244;
-	x[40] = 16'h8644;
-	x[41] = 16'h8C2F;
-	x[42] = 16'h93ED;
-	x[43] = 16'h9D60;
-	x[44] = 16'hA861;
-	x[45] = 16'hB4C3;
-	x[46] = 16'hC256;
-	x[47] = 16'hD0E1;
-	x[48] = 16'hE02B;
-	x[49] = 16'hEFF5;
-	x[50] = 16'h0000;
-	x[51] = 16'h100B;
-	x[52] = 16'h1FD5;
-	x[53] = 16'h2F1F;
-	x[54] = 16'h3DAA;
-	x[55] = 16'h4B3D;
-	x[56] = 16'h579F;
-	x[57] = 16'h62A0;
-	x[58] = 16'h6C13;
-	x[59] = 16'h73D1;
-	x[60] = 16'h79BC;
-	x[61] = 16'h7DBC;
-	x[62] = 16'h7FBF;
-	x[63] = 16'h7FBF;
-	x[64] = 16'h7DBC;
-	x[65] = 16'h79BC;
-	x[66] = 16'h73D1;
-	x[67] = 16'h6C13;
-	x[68] = 16'h62A0;
-	x[69] = 16'h579F;
-	x[70] = 16'h4B3D;
-	x[71] = 16'h3DAA;
-	x[72] = 16'h2F1F;
-	x[73] = 16'h1FD5;
-	x[74] = 16'h100B;
-	x[75] = 16'h0000;
-	x[76] = 16'hEFF5;
-	x[77] = 16'hE02B;
-	x[78] = 16'hD0E1;
-	x[79] = 16'hC256;
-	x[80] = 16'hB4C3;
-	x[81] = 16'hA861;
-	x[82] = 16'h9D60;
-	x[83] = 16'h93ED;
-	x[84] = 16'h8C2F;
-	x[85] = 16'h8644;
-	x[86] = 16'h8244;
-	x[87] = 16'h8041;
-	x[88] = 16'h8041;
-	x[89] = 16'h8244;
-	x[90] = 16'h8644;
-	x[91] = 16'h8C2F;
-	x[92] = 16'h93ED;
-	x[93] = 16'h9D60;
-	x[94] = 16'hA861;
-	x[95] = 16'hB4C3;
-	x[96] = 16'hC256;
-	x[97] = 16'hD0E1;
-	x[98] = 16'hE02B;
-	x[99] = 16'hEFF5;
 
-	
+function automatic string to_hex4(input logic signed [15:0] val);
+    logic [15:0] uval = $unsigned(val); // интерпретируем как беззнаковое для hex-вывода
+    string s = "";
+    for (int i = 3; i >= 0; i--) begin
+        logic [3:0] nibble = uval[4*i +: 4];
+        if (nibble < 10)
+            s = {s, $sformatf("%0d", nibble)};
+        else
+            s = {s, $sformatf("%c", "A" + (nibble - 10))};
+    end
+    return s;
+endfunction
+
+//инициализация массива входных отсчетов и коэфициентов
+initial begin
+	int fid;
+	int i;
+    // Открытие файла для чтения
+    fid = $fopen("x.txt", "r");
+    if (fid == 0) begin
+        $error("Не удалось открыть файл x.txt");
+        $finish;
+    end
+	 for (int j = -15; j<0; j++) x[j] = 0;
+    // Последовательное чтение 300 отсчетов
+    for (i = 0; i < 300; i++) begin
+        if ($fscanf(fid, "%h", x[i]) != 1) begin
+            $warning("Чтение прервано на отсчете %0d (в файле меньше 300 строк).", i);
+            break;
+        end
+    end
+    $fclose(fid);
+
+    $display("Успешно загружено %0d отсчетов в массив x.", i);
 end
+
+
 
 //объявление сигналов для подключеняи к блоку
 logic clk, rst, vld_in, vld_out;
@@ -154,10 +86,12 @@ end
 //тест с подачей синуса в области пропускания:
 
 initial begin
+	integer fd;
+	int i;
 	vld_in <= 0;
 	wait(rst);
 	wait(~rst);
-	for(int i = 0; i <=84; i++) begin
+	for(int i = -15; i <=280; i++) begin
 		@(posedge clk);
 		vld_in <= 1;
 		for (int j = 0; j < 16; j++) x_in[j] <= x[i+j];
@@ -167,9 +101,19 @@ initial begin
 	end
 	
 	vld_in <= 0;
-	repeat(20) @(posedge clk);
-	for (int k = 0; k < c; k++) $display("%h", y[k]);
-	$stop();
+	
+fd = $fopen("y_out.txt", "w");
+if (fd == 0) begin
+    $error("Не удалось открыть файл y_out.txt");
+    $finish;
+end
+
+for (i = 0; i <= 300; i++) begin
+    $fdisplay(fd, "%s", to_hex4(y[i]));
+end
+
+$fclose(fd);
+$stop();
 end
 
 
@@ -187,3 +131,4 @@ initial begin
 end
 
 endmodule
+

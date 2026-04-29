@@ -1,0 +1,72 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\pc\Desktop\study_project\Digital signal processing\FIR_filter_DA
+vFIR_filter_DA
+Z1 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+Z2 ITP<M>oI=kHKEZDM<8h:lI1
+Z3 V[@a_SK]JVez=>ReeG]AnM0
+Z4 !s105 FIR_filter_DA_sv_unit
+S1
+Z5 dC:\Users\pc\Desktop\study_project\Digital signal processing\FIR_filter_DA
+Z6 w1777465661
+Z7 8C:/Users/pc/Desktop/study_project/Digital signal processing/FIR_filter_DA/FIR_filter_DA.sv
+Z8 FC:/Users/pc/Desktop/study_project/Digital signal processing/FIR_filter_DA/FIR_filter_DA.sv
+L0 1
+Z9 OV;L;10.1d;51
+r1
+31
+Z10 o-work work -O0
+Z11 n@f@i@r_filter_@d@a
+!i10b 1
+Z12 !s100 <]cbGTQLI`Md>z@>?z@BY1
+!s85 0
+Z13 !s108 1777478251.757000
+Z14 !s107 C:/Users/pc/Desktop/study_project/Digital signal processing/FIR_filter_DA/FIR_filter_DA.sv|
+Z15 !s90 -reportprogress|300|-work|work|C:/Users/pc/Desktop/study_project/Digital signal processing/FIR_filter_DA/FIR_filter_DA.sv|
+!s101 -O0
+vsp_bl
+R1
+Z16 I3K8aLl]lNoR2EOD?nR^=`1
+Z17 VUAkd?IMfL<X<EBJPH>SBY2
+Z18 !s105 sp_bl_sv_unit
+S1
+R5
+Z19 w1775983533
+Z20 8C:/Users/pc/Desktop/study_project/Digital signal processing/FIR_filter_DA/sp_bl.sv
+Z21 FC:/Users/pc/Desktop/study_project/Digital signal processing/FIR_filter_DA/sp_bl.sv
+L0 1
+R9
+r1
+31
+R10
+Z22 !s100 ]gHFoAlIVH]]_Q87o?R=C1
+Z23 !s108 1777478250.263000
+Z24 !s107 C:/Users/pc/Desktop/study_project/Digital signal processing/FIR_filter_DA/sp_bl.sv|
+Z25 !s90 -reportprogress|300|-work|work|C:/Users/pc/Desktop/study_project/Digital signal processing/FIR_filter_DA/sp_bl.sv|
+!i10b 1
+!s85 0
+!s101 -O0
+vtb
+R1
+!i10b 1
+!s100 KOY2_b>1hkWW4@7jZ=goG3
+IBULHD<2aS_47]zF?W[j=n3
+Z26 V09n0_WVW_4b5:?[iTmJ`z0
+Z27 !s105 tb_sv_unit
+S1
+R5
+w1777478212
+8C:/Users/pc/Desktop/study_project/Digital signal processing/FIR_filter_DA/tb.sv
+FC:/Users/pc/Desktop/study_project/Digital signal processing/FIR_filter_DA/tb.sv
+L0 2
+R9
+r1
+!s85 0
+31
+!s108 1777478253.086000
+!s107 C:/Users/pc/Desktop/study_project/Digital signal processing/FIR_filter_DA/tb.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/pc/Desktop/study_project/Digital signal processing/FIR_filter_DA/tb.sv|
+!s101 -O0
+R10

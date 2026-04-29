@@ -1,0 +1,26 @@
+# do run_sim.do 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module sp_bl
+# 
+# Top level modules:
+# 	sp_bl
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module FIR_filter_DA
+# 
+# Top level modules:
+# 	FIR_filter_DA
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module tb
+# 
+# Top level modules:
+# 	tb
+# vsim -gui work.tb 
+# Loading sv_std.std
+# Loading work.tb
+# Loading work.FIR_filter_DA
+# Loading work.sp_bl
+# Успешно загружено 300 отсчетов в массив x.
+# Break in Module tb at tb.sv line 425
+# Stopped at tb.sv line 425 
+# Simulation Breakpoint: Break in Module tb at tb.sv line 425
+# MACRO ./run_sim.do PAUSED at line 5
